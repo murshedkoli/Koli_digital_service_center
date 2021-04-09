@@ -20,6 +20,10 @@ client.connect(err => {
   const productsCollection = client.db("myshop").collection("products");
   const ordersCollection = client.db("myshop").collection("orders");
 
+  app.get('/', (req, res) => {
+    res.send('Server Run Successfully')
+  })
+
   app.post("/addproduct", (req, res)=>{
       const product = req.body;
       productsCollection.insertOne(product)
@@ -90,4 +94,4 @@ app.post("/placeorder", (req, res)=>{
 });
 
 
-app.listen(4000)
+app.listen(process.env.PORT || 4000)
